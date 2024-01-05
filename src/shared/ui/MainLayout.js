@@ -2,12 +2,17 @@
 import { Breadcrumb, Menu, Layout, theme } from 'antd';
 import React from 'react';
 
+const containerStyle = {
+    height: '100vh',
+    minWidth: '360px',
+};
+
 const contentStyle = {
     textAlign: 'center',
     minHeight: 120,
     lineHeight: '120px',
     color: '#fff',
-    padding: '0 50px',
+    padding: '0 36px',
 };
 
 const { Content, Footer, Header } = Layout;
@@ -23,7 +28,7 @@ export const MainLayout = ({ children }) => {
       } = theme.useToken();
 
     return (
-        <Layout>
+        <Layout style={containerStyle}>
         <Header style={{ display: 'flex', alignItems: 'center' }}>
           <Menu
             theme="dark"
