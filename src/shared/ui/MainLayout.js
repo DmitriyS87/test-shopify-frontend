@@ -1,5 +1,5 @@
 
-import { Breadcrumb, Menu, Layout, theme } from 'antd';
+import { Breadcrumb, Layout, Grid, theme } from 'antd';
 import React from 'react';
 
 const containerStyle = {
@@ -13,50 +13,48 @@ const contentStyle = {
     lineHeight: '120px',
     color: '#fff',
     padding: '0 36px',
+    overflow: 'auto',
 };
 
-const { Content, Footer, Header } = Layout;
+const getContentStyle = (breakpoints) => {
+    return {
+        ...contentStyle,
+        padding: breakpoints.lg || breakpoints.xl || breakpoints.xxl ? '0 36px' : '0'
+    }
+}
 
-const items = new Array(15).fill(null).map((_, index) => ({
-    key: index + 1,
-    label: `nav ${index + 1}`,
-  }));
+const { Content, Footer, Header } = Layout;
+const { useBreakpoint } = Grid;
 
 export const MainLayout = ({ children }) => {
+    const screens = useBreakpoint();
     const {
         token: { colorBgContainer, borderRadiusLG },
-      } = theme.useToken();
+    } = theme.useToken();
 
     return (
         <Layout style={containerStyle}>
-        <Header style={{ display: 'flex', alignItems: 'center' }}>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            defaultSelectedKeys={['2']}
-            items={items}
-            style={{ flex: 1, minWidth: 0 }}
-          />
-        </Header>
-        <Content style={contentStyle}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
-              background: colorBgContainer,
-              minHeight: 280,
-              padding: 24,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            {children}
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Test app created by DmitriyS87
-        </Footer>
-      </Layout>
+            <Header style={{ display: 'flex', alignItems: 'center' }}>
+            </Header>
+            <Content style={getContentStyle(screens)} >
+                <Breadcrumb style={{ margin: '16px 0' }}>
+                    <Breadcrumb.Item>Products</Breadcrumb.Item>
+                </Breadcrumb>
+                <div
+                    style={{
+                        background: colorBgContainer,
+                        minHeight: 280,
+                        padding: 24,
+                        borderRadius: borderRadiusLG,
+                    }}
+                >
+                    {children}
+                </div>
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>
+                Test app created by DmitriyS87
+            </Footer>
+        </Layout>
     )
 };
 

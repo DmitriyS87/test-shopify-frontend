@@ -1,11 +1,11 @@
 import React from 'react';
 import { MainLayout } from '../shared/ui/MainLayout';
-import { ProductCard } from '../entities/Product/components/ProductCard';
+import { ProductsList } from '../features/ProductsList/ProductsList';
 
 const ProductsPage = () => {
   return (
     <MainLayout>
-      <ProductCard />
+      <ProductsList />
     </MainLayout>
   );
 };
