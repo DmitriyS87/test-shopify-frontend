@@ -1,13 +1,12 @@
 import { ConfigProvider } from "antd";
 import { globalTheme } from "../core/theme";
-import ProductsPage from "../pages/ProductsPage";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
 
-function App() {
-  return (
-    <ConfigProvider theme={globalTheme}>
-      <ProductsPage />
-    </ConfigProvider>
-  );
-}
+const App = () => (
+  <ConfigProvider theme={globalTheme}>
+    <RouterProvider router={router} />
+  </ConfigProvider>
+);
 
 export default App;

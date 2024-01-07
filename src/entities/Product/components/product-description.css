@@ -1,0 +1,5 @@
+/* We use that stylesheet to fix inserted html styles */
+
+.product-html-description p:first-of-type {
+  margin-top: 0;
+}
