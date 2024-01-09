@@ -3,13 +3,12 @@ import { ProductsPage } from "../pages/ProductsPage";
 import { ProductPage } from "../pages/ProductPage";
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <ProductsPage />,
-
-    },
-    {
-        path: "/:pid",
-        element: <ProductPage />,
-    },
+  {
+    path: "/",
+    element: <ProductsPage />,
+  },
+  {
+    path: "/:pid",
+    element: <ProductPage />,
+  },
 ]);

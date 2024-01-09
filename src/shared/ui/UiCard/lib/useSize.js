@@ -1,5 +1,5 @@
-import SizeContext from 'antd/es/config-provider/SizeContext';
-import React from 'react';
+import SizeContext from "antd/es/config-provider/SizeContext";
+import React from "react";
 
 export const useSize = (customSize) => {
   const size = React.useContext(SizeContext);
@@ -7,7 +7,7 @@ export const useSize = (customSize) => {
     if (!customSize) {
       return size;
     }
-    if (typeof customSize === 'string') {
+    if (typeof customSize === "string") {
       return customSize ?? size;
     }
     if (customSize instanceof Function) {
