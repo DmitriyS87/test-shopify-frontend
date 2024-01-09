@@ -13,7 +13,7 @@ const prepareProductProps = ({ description, descriptionHtml, title, images }) =>
 })
 
 export const ProductsList = () => {
-    const { error, status, data, run } = useAsync({
+    const { status, data, run } = useAsync({
         status: 'pending',
     });
     // ! TODO clearify what type of data is provided

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Card } from 'antd';
 import { UiCard } from '../../../shared/ui/UiCard/UiCard';
 import classNames from 'classnames';
 import { ConfigContext } from "antd/es/config-provider";
