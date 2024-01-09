@@ -1,11 +1,14 @@
 import React from "react";
-import { MainLayout } from "../shared/ui/MainLayout";
 import { ProductsList } from "../features/ProductsList/ProductsList";
+import ErrorBoundary from "../shared/ui/ErrorBoundary/ErrorBoundary";
+import { Skeleton } from "antd";
 
 export const ProductsPage = () => {
   return (
-    <MainLayout>
+    <ErrorBoundary
+      fallbackComponent={<Skeleton active title="ERROR"></Skeleton>}
+    >
       <ProductsList />
-    </MainLayout>
+    </ErrorBoundary>
   );
 };

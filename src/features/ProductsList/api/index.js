@@ -1,6 +1,5 @@
-import { productsApiResponse } from "../../../core/moks";
+const host = "http://localhost:8080";
 
 export const getProductsList = async () => {
-  const response = await productsApiResponse();
-  return await response.json();
+  return await fetch(`${host}/products`);
 };

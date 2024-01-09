@@ -12,7 +12,6 @@ export const removeImageLinks = (html) => {
     const result = html.replace(regex, "");
     return result;
   } catch (error) {
-    //! TODO error logger
     return html;
   }
 };
@@ -21,3 +20,14 @@ export const sanitizeHtml = (html) => {
   const sanitizedHtml = sanitize(html);
   return sanitizedHtml;
 };
+
+export function parsePathname(pathname) {
+  const regex = /\/([^/]+)(?:\/([^/]+)(?:\/(\d+))?)?/;
+  const match = pathname.match(regex);
+  if (match) {
+    const [, ...other] = match;
+    return other.filter((item) => !!item);
+  }
+
+  return null;
+}

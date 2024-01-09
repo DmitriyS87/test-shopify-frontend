@@ -2,36 +2,24 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { List } from "antd";
 import { ProductCard } from "../../entities/Product/components/ProductCard";
-import { getProductsList } from "./api";
-import { useAsync } from "../../shared/hooks/useAsync";
-
-const prepareProductProps = ({
-  description,
-  descriptionHtml,
-  title,
-  images,
-}) => ({
-  img: images ? images[0] : null,
-  title,
-  description,
-  descriptionHtml,
-});
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, selectAllProduts } from "./reducer/productsSlice";
 
 export const ProductsList = () => {
-  const { status, data, run } = useAsync({
-    status: "pending",
-  });
-  // ! TODO clearify what type of data is provided
-  const products = data?.products || [];
+  const dispatch = useDispatch();
+  const products = useSelector(selectAllProduts);
+  const productsStatus = useSelector((state) => state.products.status);
 
   useEffect(() => {
-    run(getProductsList());
-  }, [run]);
+    if (productsStatus === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [productsStatus, dispatch]);
 
   return (
     <List
       grid={{
-        gutter: 16,
+        gutter: 12,
         xs: 1,
         sm: 2,
         md: 2,
@@ -39,13 +27,13 @@ export const ProductsList = () => {
         xl: 4,
         xxl: 5,
       }}
-      dataSource={data || products}
+      dataSource={products}
       renderItem={(product, idx) => (
         <List.Item key={product.id}>
-          <Link to={`/${product.urlId || idx}`}>
+          <Link to={`/products/${product.id || idx}`}>
             <ProductCard
-              isLoading={status === "pending"}
-              product={prepareProductProps(product)}
+              isLoading={productsStatus === "loading"}
+              product={product}
             />
           </Link>
         </List.Item>

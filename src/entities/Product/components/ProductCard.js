@@ -30,11 +30,13 @@ export const ProductCard = ({ product, isLoading }) => {
       bodyStyle={productCardStyle.body}
       style={productCardStyle.card}
       extra={
-        <CanvasImg
-          alt={img?.altText ?? "product photo"}
-          style={productCardStyle.img}
-          src={img?.url ?? ""}
-        />
+        img ? (
+          <CanvasImg
+            alt={img?.altText ?? "product picture"}
+            style={productCardStyle.img}
+            src={img.url ?? ""}
+          />
+        ) : null
       }
     >
       <div className={uiLibMetaCN} style={productCardStyle.meta}>

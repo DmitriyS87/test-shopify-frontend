@@ -9,6 +9,7 @@ export const productCardStyle = {
   head: {
     height: "65%",
     overflow: "hidden",
+    paddingTop: "10px",
   },
   body: {
     height: "35%",

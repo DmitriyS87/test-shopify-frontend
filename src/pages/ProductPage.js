@@ -1,10 +1,9 @@
 import React from "react";
-import { MainLayout } from "../shared/ui/MainLayout";
+import { Product } from "../features/Product/Product";
+import { useParams } from "react-router-dom";
 
-export const ProductPage = (props) => {
-  return (
-    <MainLayout>
-      <div>Product</div>
-    </MainLayout>
-  );
+export const ProductPage = () => {
+  const { pid } = useParams();
+  console.log(pid);
+  return <Product />;
 };

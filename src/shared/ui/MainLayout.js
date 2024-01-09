@@ -1,5 +1,7 @@
-import { Breadcrumb, Layout, Grid, theme } from "antd";
+import { Layout, Grid, theme } from "antd";
 import React from "react";
+import { UiBreadcrumb } from "./Breadcrumb/Breadcrumb";
+import { Outlet } from "react-router-dom";
 
 const containerStyle = {
   height: "100vh",
@@ -19,7 +21,7 @@ const getContentStyle = (breakpoints) => {
   return {
     ...contentStyle,
     padding:
-      breakpoints.lg || breakpoints.xl || breakpoints.xxl ? "0 36px" : "0",
+      breakpoints.lg || breakpoints.xl || breakpoints.xxl ? "0 36px" : "0 12px",
   };
 };
 
@@ -29,25 +31,24 @@ const { useBreakpoint } = Grid;
 export const MainLayout = ({ children }) => {
   const screens = useBreakpoint();
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer, borderRadiusLG, colorTextDescription },
   } = theme.useToken();
 
   return (
     <Layout style={containerStyle}>
       <Header style={{ display: "flex", alignItems: "center" }}></Header>
       <Content style={getContentStyle(screens)}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Products</Breadcrumb.Item>
-        </Breadcrumb>
+        <UiBreadcrumb />
         <div
           style={{
             background: colorBgContainer,
             minHeight: 280,
             padding: 24,
             borderRadius: borderRadiusLG,
+            color: colorTextDescription,
           }}
         >
-          {children}
+          <Outlet />
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
