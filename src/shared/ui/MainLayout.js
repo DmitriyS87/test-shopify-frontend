@@ -1,7 +1,6 @@
 import { Layout, Grid, theme } from "antd";
 import React from "react";
 import { UiBreadcrumb } from "./Breadcrumb/Breadcrumb";
-import { Outlet } from "react-router-dom";
 
 const containerStyle = {
   height: "100vh",
@@ -11,7 +10,6 @@ const containerStyle = {
 const contentStyle = {
   textAlign: "center",
   minHeight: 120,
-  lineHeight: "120px",
   color: "#fff",
   padding: "0 36px",
   overflow: "auto",
@@ -48,7 +46,7 @@ export const MainLayout = ({ children }) => {
             color: colorTextDescription,
           }}
         >
-          <Outlet />
+          {children}
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>

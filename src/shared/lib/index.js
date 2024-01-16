@@ -8,18 +8,14 @@ export const loggerFn = (fn) => {
 export const removeImageLinks = (html) => {
   try {
     const regex =
-      /(?:&nbsp;|<span.*?>|<img.*?src="|>)(https?:\/\/.*?\.(?:png|jpg|jpeg|gif|bmp|svg|webp))(?:<\/span>|".*?>|)/gi;
-    const result = html.replace(regex, "");
-    return result;
+      /<img\s+[^>]*src="[^"]*"[^>]*>|https?:\/\/\S+\.(jpg|jpeg|png|gif)\b/gi;
+    return html.replace(regex, "");
   } catch (error) {
     return html;
   }
 };
 
-export const sanitizeHtml = (html) => {
-  const sanitizedHtml = sanitize(html);
-  return sanitizedHtml;
-};
+export const sanitizeHtml = (html) => sanitize(html);
 
 export function parsePathname(pathname) {
   const regex = /\/([^/]+)(?:\/([^/]+)(?:\/(\d+))?)?/;
@@ -29,5 +25,5 @@ export function parsePathname(pathname) {
     return other.filter((item) => !!item);
   }
 
-  return null;
+  return [];
 }

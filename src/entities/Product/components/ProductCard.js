@@ -4,15 +4,13 @@ import classNames from "classnames";
 import { ConfigContext } from "antd/es/config-provider";
 import "./product-description.css";
 import { productCardStyle } from "./ProductCard.style";
-import { removeImageLinks, sanitizeHtml } from "../../../shared/lib";
+import { removeImageLinks } from "../../../shared/lib";
 import CanvasImg from "../../../shared/ui/CanvasImg/CanvasImg";
+import { SanitizedHTML } from "../../../shared/ui/SanitizedHTML/SanitizedHTML";
 
 export const ProductCard = ({ product, isLoading }) => {
-  const { img, title, descriptionHtml } = product;
-  // ! TODO check removeImageLinks to avoid unnecessary cut
-  const sanitizedDescriptionHtml = sanitizeHtml(
-    removeImageLinks(descriptionHtml),
-  );
+  const { img, title } = product;
+  const descriptionHtml = removeImageLinks(product.descriptionHtml);
 
   const { getPrefixCls } = useContext(ConfigContext);
   const uiLibPrefix = getPrefixCls("card");
@@ -45,11 +43,7 @@ export const ProductCard = ({ product, isLoading }) => {
             <div className={`${uiLibPrefix}-meta-title`}>{title}</div>
           ) : null}
           <div className={descriptionCN} style={productCardStyle.metaDescr}>
-            {descriptionHtml ? (
-              <div
-                dangerouslySetInnerHTML={{ __html: sanitizedDescriptionHtml }}
-              />
-            ) : null}
+            {descriptionHtml ? <SanitizedHTML html={descriptionHtml} /> : null}
           </div>
         </div>
       </div>

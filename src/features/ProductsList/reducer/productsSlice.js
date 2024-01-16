@@ -22,7 +22,6 @@ export const counterSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        console.log(action);
         const serverProducts = action.payload || [];
         state.status = "succeeded";
         state.products = serverProducts.map(transformProduct);
@@ -48,10 +47,7 @@ export default counterSlice.reducer;
 
 export const selectAllProduts = (state) => state.products.products;
 
-export const selectProductById = (state, productId) => {
-  console.log({ state, productId });
-  return state.products.products.find((product) => {
-    console.log({ product, productId });
+export const selectProductById = (state, productId) =>
+  state.products.products.find((product) => {
     return product.id === productId;
   });
-};
